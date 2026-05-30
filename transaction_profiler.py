@@ -11,3 +11,9 @@ print("The number of transactions is {}".format(rows))
 #Calculating the total amount spent in these transactions
 total_expense = round(sample_data['amount'].sum(), 2)
 print("Across {} expenses, the individual spent {}".format(rows, total_expense))
+
+#Calculating the average expense per merchant
+avg_per_airline = round(sample_data[['merchant', 'amount']].groupby('merchant')['amount'].mean(), 2)
+avg_per_airline = avg_per_airline.reset_index()
+avg_per_airline = avg_per_airline.sort_values(by=['merchant', 'amount'], ascending=[False, True])
+print(avg_per_airline)
