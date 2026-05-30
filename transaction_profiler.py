@@ -17,3 +17,12 @@ avg_per_airline = round(sample_data[['merchant', 'amount']].groupby('merchant')[
 avg_per_airline = avg_per_airline.reset_index()
 avg_per_airline = avg_per_airline.sort_values(by=['merchant', 'amount'], ascending=[False, True])
 print(avg_per_airline)
+
+#Getting the highest and lowest transaction
+max_transaction = sample_data['amount'].max()
+max_merchant = sample_data[sample_data['amount'] == max_transaction]['merchant'].item()
+min_transaction = sample_data['amount'].min()
+min_merchant = sample_data[sample_data['amount'] == min_transaction]['merchant'].item()
+#Printing out the row with the max transaction
+print("The maximum transaction of {} is attributed to the merchant {}".format(max_transaction, max_merchant))
+print("The minimum transaction of {} is attributed to the merchant {}".format(min_transaction, min_merchant))
